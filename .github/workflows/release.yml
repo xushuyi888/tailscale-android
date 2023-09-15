@@ -21,7 +21,7 @@ jobs:
       - name: modify
         run: |
           sed -i '/b.backend.Start(ipn.Options/,+2d' cmd/tailscale/backend.go
-          sed -i '/backend.SetNotifyCallback/a\ \ \ \ \ \ \ \ prefs := ipn.NewPrefs()\n\ \ \ \ \ \ \ \ prefs.ControlURL = "'"http://42.192.7.110:8080/"'"\n\ \ \ \ \ \ \ \ opts := ipn.Options{}\n\ \ \ \ \ \ \ \ return b.backend.Start(opts)\n}\n' cmd/tailscale/backend.go
+          sed -i '/backend.SetNotifyCallback/a\ \ \ \ \ \ \ \ prefs := ipn.NewPrefs()\n\ \ \ \ \ \ \ \ prefs.ControlURL = "'"http://42.192.7.110:8080/"'"\n\ \ \ \ \ \ \ \ opts := ipn.Options{\n\ \ \ \ \ \ \ \ StateKey: "ipn-android",\n\ \ \ \ \ \ \ \ \ \ \ \ UpdatePrefs: prefs,\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ return b.backend.Start(opts)\n}\n' cmd/tailscale/backend.go
           sed -i 's/Sign in with other/Sign in with Headscale/g' cmd/tailscale/ui.go
 
       - name: build
