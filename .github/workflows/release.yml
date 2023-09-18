@@ -20,7 +20,7 @@ jobs:
 
       - name: modify
         run: |
-          sed -i 's/Sign in with other/Sign in with Headscale/g' cmd/tailscale/ui.go
+          sed -i 's/Sign in with other/Sign in with Headscale xjp/g' cmd/tailscale/ui.go
 
       - name: build
         run: |
